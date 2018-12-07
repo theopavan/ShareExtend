@@ -62,9 +62,10 @@ public class ShareExtendPlugin implements MethodChannel.MethodCallHandler {
       Uri uri = getUriForFile(mRegistrar.context(), authorities,f);
       if ("file".equals(type)) {
         shareIntent.setType("application/*");
-      }
-      if ("image".equals(type)) {
+      } else if ("image".equals(type)) {
         shareIntent.setType("image/*");
+      } else {
+        shareIntent.setType(type);
       }
       shareIntent.putExtra(Intent.EXTRA_STREAM,uri);
     }
